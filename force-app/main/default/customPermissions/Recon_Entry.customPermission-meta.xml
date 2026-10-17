@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description
+  >입출금 대조 홈의 대조 입력 마법사를 보고 실행할 수 있음 (대조 담당)</description>
+    <isLicensed>false</isLicensed>
+    <label>대조 입력</label>
+</CustomPermission>

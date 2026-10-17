@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>Share_With_Recon_Teams</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description
+    >모든 일일 대조(와 그 미대조 항목)를 운영팀(접근 부서 그룹)에만 공유. 실제로 고칠 수 있는 칸은 권한 세트가 정함</description>
+        <label>운영팀에 공유</label>
+        <sharedTo>
+            <group>Recon_Access</group>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers />
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

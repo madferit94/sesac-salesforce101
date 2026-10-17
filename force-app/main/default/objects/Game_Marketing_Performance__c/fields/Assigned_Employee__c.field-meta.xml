@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_Employee__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>담당 직원</label>
+    <referenceTo>Employee__c</referenceTo>
+    <relationshipLabel>담당 게임 마케팅 성과</relationshipLabel>
+    <relationshipName>Assigned_Game_Performances</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

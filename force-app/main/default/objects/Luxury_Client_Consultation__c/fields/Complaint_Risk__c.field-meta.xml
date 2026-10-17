@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complaint_Risk__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>매니저 확인이 필요한 신호</description>
+    <inlineHelpText>매니저 확인이 필요한 신호</inlineHelpText>
+    <label>불만 위험</label>
+    <type>Checkbox</type>
+</CustomField>

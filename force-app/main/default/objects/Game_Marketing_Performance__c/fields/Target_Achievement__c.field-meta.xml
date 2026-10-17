@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Achievement__c</fullName>
+    <formula
+  >IF(OR(ISBLANK(Target_Installs__c),Target_Installs__c&lt;=0,ISBLANK(Actual_Installs__c)),NULL,Actual_Installs__c/Target_Installs__c)</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>목표 달성률</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Percent</type>
+</CustomField>

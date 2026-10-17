@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Coordinator__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>프로젝트 코디네이터</label>
+    <referenceTo>Employee__c</referenceTo>
+    <relationshipLabel>코디네이터 AI 프로젝트</relationshipLabel>
+    <relationshipName>Coordinated_AI_Projects</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

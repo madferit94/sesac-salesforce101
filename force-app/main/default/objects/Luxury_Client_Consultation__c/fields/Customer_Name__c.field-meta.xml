@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Name__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>고객이름</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>럭셔리 고객 상담</relationshipLabel>
+    <relationshipName>Luxury_Client_Consultations</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <label>게임 마케팅 성과</label>
+    <nameField>
+        <displayFormat>GMP-{0000}</displayFormat>
+        <label>성과 번호</label>
+        <startingNumber>1</startingNumber>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>게임 마케팅 성과</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

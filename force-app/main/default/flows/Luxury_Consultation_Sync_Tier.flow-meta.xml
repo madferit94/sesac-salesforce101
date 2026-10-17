@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <assignments>
+        <name>Copy_Contact_Tier</name>
+        <label>Contact 고객 등급 복사</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Customer_Tier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Customer_Name__r.Customer_Tier__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Contact_Has_Tier</name>
+        <label>Contact 등급 확인</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>등급 없음</defaultConnectorLabel>
+        <rules>
+            <name>Has_Tier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Customer_Name__r.Customer_Tier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_Contact_Tier</targetReference>
+            </connector>
+            <label>등급 있음</label>
+        </rules>
+    </decisions>
+    <description
+  >상담 저장 직전에 고객이름(Contact)의 고객 등급을 상담의 고객 등급으로 복사합니다.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Luxury Consultation Sync Tier {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Luxury Consultation Sync Tier</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Contact_Has_Tier</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Customer_Name__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Luxury_Client_Consultation__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

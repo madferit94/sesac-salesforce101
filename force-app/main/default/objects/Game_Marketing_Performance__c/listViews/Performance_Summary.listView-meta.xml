@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Performance_Summary</fullName>
+    <columns>NAME</columns>
+    <columns>Campaign__c</columns>
+    <columns>Assigned_Employee__c</columns>
+    <columns>Clicks__c</columns>
+    <columns>Actual_Installs__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>성과 현황</label>
+</ListView>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Response_Due_At__c</fullName>
+    <label>첫 응답 기한</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

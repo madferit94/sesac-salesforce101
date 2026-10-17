@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Items</fullName>
+    <columns>NAME</columns>
+    <columns>Urgency__c</columns>
+    <columns>Daily_Recon__c</columns>
+    <columns>Side__c</columns>
+    <columns>Transaction_Type__c</columns>
+    <columns>Deposit_Purpose__c</columns>
+    <columns>Counterparty__c</columns>
+    <columns>Depositor_Name__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Cause__c</columns>
+    <columns>Handler_Employee__c</columns>
+    <columns>Days_Open__c</columns>
+    <columns>Resolved__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Resolved__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>미해결 항목</label>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Department__c</fullName>
+    <formula
+  >IF(ISBLANK(Handler_Employee__r.Manager_Employee__c), Handler_Employee__r.Department__c, Handler_Employee__r.Manager_Employee__r.Department__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >보고 대상 팀장의 부서 (처리 담당에게 상위 직원이 없으면 처리 담당의 부서)</inlineHelpText>
+    <label>보고 부서</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

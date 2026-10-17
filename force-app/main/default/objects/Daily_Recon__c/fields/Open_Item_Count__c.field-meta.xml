@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Item_Count__c</fullName>
+    <inlineHelpText>해결 여부가 체크되지 않은 미대조 항목 수</inlineHelpText>
+    <label>남은 항목 수</label>
+    <summaryFilterItems><field>Recon_Item__c.Resolved__c</field><operation
+    >equals</operation><value>False</value></summaryFilterItems>
+    <summaryForeignKey>Recon_Item__c.Daily_Recon__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <type>Summary</type>
+</CustomField>

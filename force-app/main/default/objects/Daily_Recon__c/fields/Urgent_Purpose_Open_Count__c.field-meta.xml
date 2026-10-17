@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Urgent_Purpose_Open_Count__c</fullName>
+    <inlineHelpText
+  >해결되지 않은 미대조 항목 중 입금 목적이 지급 대행 자금인 항목 수</inlineHelpText>
+    <label>미해결 지급 대행 자금 수</label>
+    <summaryFilterItems>
+        <field>Recon_Item__c.Resolved__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Recon_Item__c.Deposit_Purpose__c</field>
+        <operation>equals</operation>
+        <value>지급 대행 자금</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Recon_Item__c.Daily_Recon__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <type>Summary</type>
+</CustomField>

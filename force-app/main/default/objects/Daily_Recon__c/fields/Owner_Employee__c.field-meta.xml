@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Owner_Employee__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>대조 담당</label>
+    <referenceTo>Employee__c</referenceTo>
+    <relationshipLabel>일일 대조</relationshipLabel>
+    <relationshipName>Daily_Recons</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

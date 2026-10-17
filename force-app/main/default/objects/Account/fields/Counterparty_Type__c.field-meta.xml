@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Counterparty_Type__c</fullName>
+    <label>상대방 유형</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet><restricted>true</restricted><valueSetDefinition><sorted
+      >false</sorted><value><fullName>기업</fullName><default
+        >false</default><label>기업</label></value><value><fullName
+        >은행</fullName><default>false</default><label
+        >은행</label></value></valueSetDefinition></valueSet>
+</CustomField>

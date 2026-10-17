@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>Recon_Access</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
+    <name>입출금 대조 리포트</name>
+</ReportFolder>

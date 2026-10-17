@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Daily_Recon__c</fullName>
+    <label>일일 대조</label>
+    <referenceTo>Daily_Recon__c</referenceTo>
+    <relationshipLabel>미대조 항목</relationshipLabel>
+    <relationshipName>Recon_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

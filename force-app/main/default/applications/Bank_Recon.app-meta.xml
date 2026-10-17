@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Bank_Recon_Home</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0B5CAB</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description
+  >은행 운영팀의 입출금 내역 대조 관리 앱 (Day3 미니 프로젝트)</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>입출금 대조</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Daily_Recon__c</tabs>
+    <tabs>Recon_Item__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>Employee__c</tabs>
+    <tabs>standard-WaveHomeLightning</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

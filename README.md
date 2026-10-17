@@ -1,81 +1,83 @@
-# 은행 입출금 대조 관리 앱 (Salesforce)
+# Bank Reconciliation App (Salesforce)
 
-> 은행 운영팀이 매일 하는 **"장부와 실제 통장 맞추기"** 업무를 Salesforce 앱으로 만든 프로젝트입니다.
-> 외국계 은행 운영팀에서 2년간 이 업무를 직접 했던 경험을 바탕으로 설계했습니다.
+**English** · [한국어](README.ko.md)
 
-SeSAC Salesforce S.T.A.Track 3기 Salesforce101 과정의 Day3 미니 프로젝트이며, 같은 저장소에 Day1~2 실습도 함께 들어 있습니다. 앱에 나오는 회사·인물·금액은 모두 가상입니다.
+> A Salesforce app for a task every bank operations team does daily: **checking that the books match the real bank account.**
+> I designed it from two years of doing this work by hand in a foreign bank's operations team.
 
-## 어떤 문제를 풀었나
+This is my Day3 mini project for the Salesforce101 course (SeSAC Salesforce S.T.A.Track, cohort 3). The same repository also holds the Day1–2 exercises. All companies, people and amounts in the app are fictional.
 
-은행은 매일 **시스템 장부의 잔액**과 **실제 통장 잔액**이 같은지 확인합니다. 통장은 돈이 얼마 있는지만 알려 주고, 그 돈이 누구 몫인지는 장부만 알기 때문입니다. 둘이 다르면 고객 잔액, 지급, 본사 보고가 모두 틀어집니다.
+## The problem
 
-예전에는 이렇게 했습니다.
+Every day a bank checks that the **balance in its system ledger** equals the **balance in the actual bank account**. The account only shows how much money there is; only the ledger knows whose money it is. If the two differ, customer balances, payments and reports to head office are all wrong.
 
-1. 엑셀 매크로로 같은 거래끼리 짝을 맞춘다.
-2. 남은 거래를 **출력해서 손으로 하나씩 체크**한다.
-3. 안 맞는 건이 있으면 **전 부서에 메일을 직접 써서** 보고한다.
+The old way:
 
-이 방식에서는 며칠 지나면 무엇이 남았는지, 누가 처리해야 하는지, 언제 끝났는지 추적하기가 어렵습니다.
+1. An Excel macro pairs up matching transactions.
+2. The leftover transactions are **printed and ticked off by hand**.
+3. If anything still doesn't match, someone **writes an email to every department**.
 
-## 이 앱이 하는 일
+After a few days it becomes hard to tell what is still open, who should fix it, and when it was closed.
 
-| 예전 | 이 앱 |
+## What the app does
+
+| Before | With this app |
 | --- | --- |
-| 남은 거래가 메일과 출력물에 흩어짐 | 안 맞는 거래만 한 목록에 모으고, **며칠째 남았는지**와 **긴급도**를 자동 표시 |
-| 끝났는지 사람이 판단 | 차이가 **0원**이고 남은 건이 **0건**이면 **자동으로 "완료"** |
-| 보고 메일을 매번 직접 작성 | 보고 문구와 **보고할 팀장**을 자동 작성 |
-| 누가 언제 고쳤는지 모름 | 모든 수정 이력이 남고, **끝난 기록은 잠겨서** 바꿀 수 없음 |
-| 누구나 볼 수 있음 | **운영팀만** 볼 수 있음 (다른 부서는 보고 메일만 받음) |
+| Open items scattered across emails and printouts | Only the mismatched transactions go into one list, with **days open** and an **urgency flag** shown automatically |
+| A person decides when the day is done | When the difference is **0** and **no items remain**, the day is marked **"Done" automatically** |
+| The report email is written by hand every time | The report text and the **team lead to report to** are drafted automatically |
+| No record of who changed what | Every change is logged, and **closed records are locked** |
+| Anyone can see the data | **Only the operations team** can see it (other teams just get the report email) |
 
-## 사용 흐름
+## How it is used
 
 ```
-① 엑셀로 짝 맞추기 (기존과 같음)
-② 앱에 오늘 잔액 입력 ─────────────► 차이 0원 + 남은 건 0건 → 완료
-③ 안 맞는 거래 등록
-④ 보고 문구 자동 작성 → 다른 부서에 메일
-⑤ 다른 부서가 자기 시스템에서 처리 → 운영팀에 알림
-⑥ 운영팀이 "해결" 체크 + 잔액 정정 → 다시 ②의 판정
+① Pair transactions in Excel (unchanged)
+② Enter today's balances in the app ──────► difference 0 + no open items → Done
+③ Log each mismatched transaction
+④ Report text is drafted → emailed to other teams
+⑤ The other team fixes it in their own system → tells operations
+⑥ Operations ticks "Resolved" + corrects the balance → back to the check in ②
 ```
 
-예시: 10/15 기업 고객 계좌에서 통장이 장부보다 **30만 원 많음** → 원인은 "그린셀 바이오 입금 30만 원을 재무팀이 장부에 반영하지 않음" → 재무팀 반영 후 해결 체크 → 차이 0원 → **완료**
+Example: on Oct 15 the corporate client account held **₩300,000 more** than the ledger → cause: "Greencell Bio's ₩300,000 deposit was not posted to the ledger by the finance team" → finance posts it, operations marks it resolved → difference 0 → **Done**
 
-## 직접 확인한 결과
+## What I verified
 
-- 자동 테스트 **13개** 통과 (자동 판정 계산, 부서별 접근 차단, 기록 잠금)
-- 실제 화면에서 확인: 완료된 대조의 잔액을 고치려고 하면 "완료된 대조는 … 고칠 수 없습니다"라는 안내와 함께 저장이 막힘
+- **13 automated tests** pass (status logic, team-based access, record locking)
+- Checked in the real UI: trying to change the balance of a closed day is blocked with the message "완료된 대조는 … 고칠 수 없습니다" ("a completed reconciliation can't be edited")
 
-## 기술 구성 (Salesforce를 아는 분을 위한 설명)
+## Technical overview (for Salesforce readers)
 
-| 구분 | 내용 |
+| Area | Details |
 | --- | --- |
-| 데이터 구조 | 일일 대조(`Daily_Recon__c`) 1건 아래에 미대조 항목(`Recon_Item__c`) 여러 건 (Master-Detail). 차이·경과일·긴급도는 수식, 남은 건수는 롤업 |
-| 자동화 | 레코드 트리거 Flow (상태 판정·보고 문구), 스크린 Flow (입력 마법사) |
-| 화면 | 홈 현황 카드 (LWC + Apex), 리포트 차트 2개 |
-| 보안 | 권한 세트 + 비공개 공유(OWD Private) + 공유 규칙으로 운영팀만 접근, 검증 규칙 4개로 완료 기록 잠금, 필드 변경 이력 |
-| 테스트 | Apex 테스트 13개 |
+| Data model | One Daily Reconciliation (`Daily_Recon__c`) has many Reconciliation Items (`Recon_Item__c`) (Master-Detail). Difference, days open and urgency are formulas; open-item count is a roll-up |
+| Automation | Record-triggered Flow (status decision, report text), Screen Flow (entry wizard) |
+| UI | Home summary card (LWC + Apex), two report charts |
+| Security | Permission sets + private sharing (OWD Private) + a sharing rule so only operations can access; four validation rules lock closed records; field history tracking |
+| Tests | 13 Apex tests |
 
-더 자세한 설명: [README-bank-recon.md](README-bank-recon.md) · 발표 자료: [docs/presentation](docs/presentation/bank-recon-presentation.pdf)
+More detail: [README-bank-recon.md](README-bank-recon.md) · Presentation (Korean): [docs/presentation](docs/presentation/bank-recon-presentation.pdf)
 
-## Day1~2 실습 (같은 저장소)
+## Day1–2 exercises (same repository)
 
-| 실습 | 내용 |
+| Exercise | What it covers |
 | --- | --- |
-| 직원 관리 | 여러 앱이 같이 쓰는 공통 직원 정보 (대조 앱도 이 정보를 재사용) |
-| 게임 마케팅 성과 | 캠페인 성과 기록, 빠른 입력 화면 |
-| 럭셔리 고객 상담 | 고객 등급에 따라 상담을 자동으로 윗선에 넘기는 흐름 |
-| B2B AI 프로젝트 | 기업 AI 도입 프로젝트 관리 화면과 리포트 |
+| Employees | A shared employee record used by several apps (the reconciliation app reuses it) |
+| Game marketing performance | Campaign results and a quick-entry screen |
+| Luxury client consultations | Automatically escalating consultations based on customer tier |
+| B2B AI projects | Screens and reports for managing companies' AI adoption projects |
 
-## 폴더 안내
+## Folders
 
-| 경로 | 내용 |
+| Path | Contents |
 | --- | --- |
-| `force-app/main/default` | 앱을 이루는 설정 파일 (데이터 구조, 자동화, 화면, 권한) |
-| `docs/` | 발표 자료, 구조도·흐름도 이미지 |
-| `data/` | 샘플 데이터 |
+| `force-app/main/default` | The files that make up the apps (data model, automation, screens, permissions) |
+| `docs/` | Presentation, architecture and flow diagrams |
+| `data/` | Sample data |
 
-Salesforce 개발 환경에 배포하는 방법:
+To deploy to a Salesforce org:
 
 ```bash
-sf project deploy start --target-org <org 별칭> --source-dir force-app
+sf project deploy start --target-org <org alias> --source-dir force-app
 ```

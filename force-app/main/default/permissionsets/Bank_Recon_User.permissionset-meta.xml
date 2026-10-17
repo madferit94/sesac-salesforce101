@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Bank_Recon</application>
@@ -12,8 +12,7 @@
         <enabled>true</enabled>
         <name>Recon_Entry</name>
     </customPermissions>
-    <description
-  >대조 담당: 일일 대조·미대조 항목 읽기/생성/편집(삭제 불가), 대조 입력 마법사 실행, Account·직원 읽기, 앱·탭 접근</description>
+    <description>대조 담당: 일일 대조·미대조 항목 읽기/생성/편집(삭제 불가), 대조 입력 마법사 실행, Account·직원 읽기, 앱·탭 접근</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Daily_Recon__c.Urgency__c</field>
@@ -196,9 +195,7 @@
     </fieldPermissions>
     <flowAccesses>
         <enabled>true</enabled>
-        <flow>
-Recon_Entry_Wizard;
-    </flow>
+        <flow>Recon_Entry_Wizard</flow>
     </flowAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>입출금 대조 사용자</label>

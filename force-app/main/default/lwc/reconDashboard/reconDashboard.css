@@ -1,214 +1,214 @@
 .shell {
-  overflow: hidden;
-  border-radius: 0.75rem;
+    overflow: hidden;
+    border-radius: 0.75rem;
 }
 
 .hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  background: linear-gradient(120deg, #032d60 0%, #0b5cab 60%, #1b96ff 100%);
-  color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(120deg, #032d60 0%, #0b5cab 60%, #1b96ff 100%);
+    color: #ffffff;
 }
 
 .hero__title {
-  font-size: 1.25rem;
-  font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .hero__subtitle {
-  font-size: 0.8125rem;
-  opacity: 0.85;
+    font-size: 0.8125rem;
+    opacity: 0.85;
 }
 
 .body {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.25rem 1.25rem;
 }
 
 .alert {
-  padding: 0.625rem 0.75rem;
-  border-radius: 0.5rem;
-  background: #fef1ee;
-  color: #ba0517;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.5rem;
+    background: #fef1ee;
+    color: #ba0517;
 }
 
 .kpis {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-  gap: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+    gap: 0.75rem;
 }
 
 .kpi {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.875rem 1rem;
-  border: 1px solid #e5e5e5;
-  border-left-width: 4px;
-  border-radius: 0.625rem;
-  background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e5e5e5;
+    border-left-width: 4px;
+    border-radius: 0.625rem;
+    background: #ffffff;
 }
 
 .kpi_urgent {
-  border-left-color: #ba0517;
-  background: #fef1ee;
+    border-left-color: #ba0517;
+    background: #fef1ee;
 }
 
 .kpi_urgent .kpi__value {
-  color: #ba0517;
+    color: #ba0517;
 }
 
 .kpi_warn {
-  border-left-color: #dd7a01;
+    border-left-color: #dd7a01;
 }
 
 .kpi_quiet {
-  border-left-color: #939393;
+    border-left-color: #939393;
 }
 
 .kpi_good {
-  border-left-color: #2e844a;
+    border-left-color: #2e844a;
 }
 
 .kpi_info {
-  border-left-color: #0176d3;
+    border-left-color: #0176d3;
 }
 
 .kpi__label {
-  font-size: 0.8125rem;
-  color: #3e3e3c;
-  font-weight: 600;
+    font-size: 0.8125rem;
+    color: #3e3e3c;
+    font-weight: 600;
 }
 
 .kpi__value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #181818;
-  line-height: 1.2;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #181818;
+    line-height: 1.2;
 }
 
 .kpi__unit {
-  margin-left: 0.125rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #5c5c5c;
+    margin-left: 0.125rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #5c5c5c;
 }
 
 .kpi__hint {
-  font-size: 0.75rem;
-  color: #5c5c5c;
+    font-size: 0.75rem;
+    color: #5c5c5c;
 }
 
 .panels {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 0.75rem;
 }
 
 .panel {
-  padding: 0.875rem 1rem;
-  border: 1px solid #e5e5e5;
-  border-radius: 0.625rem;
-  background: #ffffff;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.625rem;
+    background: #ffffff;
 }
 
 .panel__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
 .panel__title {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: #032d60;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #032d60;
 }
 
 .bar {
-  display: grid;
-  grid-template-columns: 8.5rem 1fr 3rem;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3125rem 0;
+    display: grid;
+    grid-template-columns: 8.5rem 1fr 3rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3125rem 0;
 }
 
 .bar__label {
-  font-size: 0.8125rem;
-  color: #181818;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    font-size: 0.8125rem;
+    color: #181818;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bar__track {
-  height: 0.625rem;
-  border-radius: 999px;
-  background: #f3f3f3;
-  overflow: hidden;
+    height: 0.625rem;
+    border-radius: 999px;
+    background: #f3f3f3;
+    overflow: hidden;
 }
 
 .bar__fill {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: #dd7a01;
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: #dd7a01;
 }
 
 .bar__fill_handler {
-  background: #0176d3;
+    background: #0176d3;
 }
 
 .bar__value {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-align: right;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-align: right;
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8125rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
 }
 
 .table th {
-  padding: 0.5rem;
-  border-bottom: 1px solid #e5e5e5;
-  color: #5c5c5c;
-  font-weight: 600;
-  text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e5e5e5;
+    color: #5c5c5c;
+    font-weight: 600;
+    text-align: left;
 }
 
 .table td {
-  padding: 0.375rem 0.5rem;
-  border-bottom: 1px solid #f3f3f3;
+    padding: 0.375rem 0.5rem;
+    border-bottom: 1px solid #f3f3f3;
 }
 
 .num {
-  text-align: right;
+    text-align: right;
 }
 
 .strong {
-  font-weight: 700;
-  color: #8c4b02;
+    font-weight: 700;
+    color: #8c4b02;
 }
 
 .empty {
-  padding: 0.5rem 0;
-  color: #5c5c5c;
-  font-size: 0.8125rem;
+    padding: 0.5rem 0;
+    color: #5c5c5c;
+    font-size: 0.8125rem;
 }
 .badge_urgent {
-  margin-left: 0.375rem;
-  padding: 0.0625rem 0.5rem;
-  border-radius: 999px;
-  background: #fef1ee;
-  color: #ba0517;
-  font-size: 0.75rem;
-  font-weight: 700;
+    margin-left: 0.375rem;
+    padding: 0.0625rem 0.5rem;
+    border-radius: 999px;
+    background: #fef1ee;
+    color: #ba0517;
+    font-size: 0.75rem;
+    font-weight: 700;
 }

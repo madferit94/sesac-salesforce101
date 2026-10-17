@@ -9,3 +9,7 @@
 .vscode
 
 coverage/
+# Salesforce 메타데이터와 문서는 배포된 그대로 둔다 (XML 값 안에서 줄 바꿈이 생기면 배포가 깨짐)
+force-app/
+docs/
+README*.md

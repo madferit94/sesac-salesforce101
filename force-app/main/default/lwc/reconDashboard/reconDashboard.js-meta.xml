@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>입출금 대조 현황</masterLabel>
-    <description
-  >일일 대조 상태별 건수, 미해결 항목의 원인별·처리 담당별 건수, 확인이 필요한 대조 목록을 보여 줍니다.</description>
+    <description>일일 대조 상태별 건수, 미해결 항목의 원인별·처리 담당별 건수, 확인이 필요한 대조 목록을 보여 줍니다.</description>
     <targets>
         <target>lightning__HomePage</target>
         <target>lightning__AppPage</target>

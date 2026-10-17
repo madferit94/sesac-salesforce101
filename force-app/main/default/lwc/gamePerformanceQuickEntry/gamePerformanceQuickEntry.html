@@ -1,202 +1,148 @@
 <template>
-  <article class="slds-card shell">
-    <header class="hero">
-      <div class="hero__icon">
-        <lightning-icon
-          icon-name="utility:graph"
-          size="small"
-          variant="inverse"
-          alternative-text="게임 성과"
-        ></lightning-icon>
-      </div>
-      <div>
-        <h2 class="hero__title">게임 성과 빠른 입력</h2>
-        <p class="hero__subtitle">
-          캠페인을 고르면 최신 성과를 불러오고, 없으면 새로 만듭니다
-        </p>
-      </div>
-    </header>
+    <article class="slds-card shell">
+        <header class="hero">
+            <div class="hero__icon">
+                <lightning-icon icon-name="utility:graph" size="small" variant="inverse" alternative-text="게임 성과"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="hero__title">게임 성과 빠른 입력</h2>
+                <p class="hero__subtitle">캠페인을 고르면 최신 성과를 불러오고, 없으면 새로 만듭니다</p>
+            </div>
+        </header>
 
-    <div class="body">
-      <lightning-progress-indicator
-        current-step={currentStep}
-        type="path"
-        variant="base"
-      >
-        <lightning-progress-step
-          label="캠페인 선택"
-          value="select"
-        ></lightning-progress-step>
-        <lightning-progress-step
-          label="성과 입력"
-          value="edit"
-        ></lightning-progress-step>
-        <lightning-progress-step
-          label="저장 완료"
-          value="done"
-        ></lightning-progress-step>
-      </lightning-progress-indicator>
+        <div class="body">
+            <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
+                <lightning-progress-step label="캠페인 선택" value="select"></lightning-progress-step>
+                <lightning-progress-step label="성과 입력" value="edit"></lightning-progress-step>
+                <lightning-progress-step label="저장 완료" value="done"></lightning-progress-step>
+            </lightning-progress-indicator>
 
-      <template lwc:if={isLoading}>
-        <lightning-spinner
-          alternative-text="처리 중"
-          size="small"
-        ></lightning-spinner>
-      </template>
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="처리 중" size="small"></lightning-spinner>
+            </template>
 
-      <template lwc:if={errorMessage}>
-        <div class="alert" role="alert">
-          <lightning-icon
-            icon-name="utility:error"
-            size="x-small"
-            variant="error"
-          ></lightning-icon>
-          <span>{errorMessage}</span>
+            <template lwc:if={errorMessage}>
+                <div class="alert" role="alert">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                    <span>{errorMessage}</span>
+                </div>
+            </template>
+
+            <template lwc:if={isSelectStep}>
+                <div class="search">
+                    <lightning-record-picker
+                        class="search__picker"
+                        label="캠페인"
+                        placeholder="캠페인 이름으로 검색"
+                        object-api-name="Campaign"
+                        value={campaignId}
+                        onchange={handleCampaignChange}
+                    ></lightning-record-picker>
+                    <lightning-button
+                        variant="brand"
+                        label="조회"
+                        icon-name="utility:search"
+                        disabled={isSearchDisabled}
+                        onclick={handleSearch}
+                    ></lightning-button>
+                </div>
+            </template>
+
+            <template lwc:else>
+                <section class="summary">
+                    <div class="summary__main">
+                        <span class="summary__label">캠페인</span>
+                        <span class="summary__campaign">{view.campaignName}</span>
+                    </div>
+                    <span class={recordBadgeClass}>{recordBadgeLabel}</span>
+                </section>
+
+                <dl class="meta">
+                    <div>
+                        <dt>실적 기준일</dt>
+                        <dd>
+                            <template lwc:if={view.reportDate}>
+                                <lightning-formatted-date-time value={view.reportDate} year="numeric" month="2-digit" day="2-digit"></lightning-formatted-date-time>
+                            </template>
+                            <template lwc:else>미지정</template>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>담당 직원</dt>
+                        <dd>{employeeLabel}</dd>
+                    </div>
+                </dl>
+
+                <section class="kpis">
+                    <div class={achievementTileClass}>
+                        <span class="kpi__label">목표 달성률</span>
+                        <span class="kpi__value">{achievementLabel}</span>
+                        <lightning-progress-bar value={achievementBarValue} size="small"></lightning-progress-bar>
+                        <span class="kpi__hint">{achievementHint}</span>
+                    </div>
+                    <div class="kpi">
+                        <span class="kpi__label">설치 전환율</span>
+                        <span class="kpi__value">{conversionLabel}</span>
+                        <span class="kpi__hint">실제 설치 수 ÷ 클릭 수</span>
+                    </div>
+                </section>
+
+                <section class="inputs">
+                    <lightning-input
+                        type="number"
+                        label="목표 설치 수"
+                        data-field="targetInstalls"
+                        value={draft.targetInstalls}
+                        min="0"
+                        step="1"
+                        message-when-range-underflow="0 이상 입력해 주세요"
+                        message-when-step-mismatch="정수로 입력해 주세요"
+                        read-only={isDoneStep}
+                        onchange={handleInput}
+                    ></lightning-input>
+                    <lightning-input
+                        type="number"
+                        label="실제 설치 수"
+                        data-field="actualInstalls"
+                        value={draft.actualInstalls}
+                        min="0"
+                        step="1"
+                        message-when-range-underflow="0 이상 입력해 주세요"
+                        message-when-step-mismatch="정수로 입력해 주세요"
+                        read-only={isDoneStep}
+                        onchange={handleInput}
+                    ></lightning-input>
+                    <lightning-input
+                        type="number"
+                        label="클릭 수"
+                        data-field="clicks"
+                        value={draft.clicks}
+                        min="0"
+                        step="1"
+                        message-when-range-underflow="0 이상 입력해 주세요"
+                        message-when-step-mismatch="정수로 입력해 주세요"
+                        read-only={isDoneStep}
+                        onchange={handleInput}
+                    ></lightning-input>
+                </section>
+
+                <template lwc:if={isDoneStep}>
+                    <div class="done">
+                        <lightning-icon icon-name="utility:success" size="small" variant="success"></lightning-icon>
+                        <span><strong>{view.recordName}</strong> 저장을 완료했습니다.</span>
+                    </div>
+                </template>
+
+                <footer class="actions">
+                    <lightning-button label="다른 캠페인" icon-name="utility:back" onclick={handleReset}></lightning-button>
+                    <template lwc:if={isEditStep}>
+                        <lightning-button variant="brand" label="저장" icon-name="utility:save" disabled={isLoading} onclick={handleSave}></lightning-button>
+                    </template>
+                    <template lwc:if={isDoneStep}>
+                        <lightning-button variant="brand-outline" label="다시 수정" icon-name="utility:edit" onclick={handleEditAgain}></lightning-button>
+                    </template>
+                </footer>
+            </template>
         </div>
-      </template>
-
-      <template lwc:if={isSelectStep}>
-        <div class="search">
-          <lightning-record-picker
-            class="search__picker"
-            label="캠페인"
-            placeholder="캠페인 이름으로 검색"
-            object-api-name="Campaign"
-            value={campaignId}
-            onchange={handleCampaignChange}
-          ></lightning-record-picker>
-          <lightning-button
-            variant="brand"
-            label="조회"
-            icon-name="utility:search"
-            disabled={isSearchDisabled}
-            onclick={handleSearch}
-          ></lightning-button>
-        </div>
-      </template>
-
-      <template lwc:else>
-        <section class="summary">
-          <div class="summary__main">
-            <span class="summary__label">캠페인</span>
-            <span class="summary__campaign">{view.campaignName}</span>
-          </div>
-          <span class={recordBadgeClass}>{recordBadgeLabel}</span>
-        </section>
-
-        <dl class="meta">
-          <div>
-            <dt>실적 기준일</dt>
-            <dd>
-              <template lwc:if={view.reportDate}>
-                <lightning-formatted-date-time
-                  value={view.reportDate}
-                  year="numeric"
-                  month="2-digit"
-                  day="2-digit"
-                ></lightning-formatted-date-time>
-              </template>
-              <template lwc:else>미지정</template>
-            </dd>
-          </div>
-          <div>
-            <dt>담당 직원</dt>
-            <dd>{employeeLabel}</dd>
-          </div>
-        </dl>
-
-        <section class="kpis">
-          <div class={achievementTileClass}>
-            <span class="kpi__label">목표 달성률</span>
-            <span class="kpi__value">{achievementLabel}</span>
-            <lightning-progress-bar
-              value={achievementBarValue}
-              size="small"
-            ></lightning-progress-bar>
-            <span class="kpi__hint">{achievementHint}</span>
-          </div>
-          <div class="kpi">
-            <span class="kpi__label">설치 전환율</span>
-            <span class="kpi__value">{conversionLabel}</span>
-            <span class="kpi__hint">실제 설치 수 ÷ 클릭 수</span>
-          </div>
-        </section>
-
-        <section class="inputs">
-          <lightning-input
-            type="number"
-            label="목표 설치 수"
-            data-field="targetInstalls"
-            value={draft.targetInstalls}
-            min="0"
-            step="1"
-            message-when-range-underflow="0 이상 입력해 주세요"
-            message-when-step-mismatch="정수로 입력해 주세요"
-            read-only={isDoneStep}
-            onchange={handleInput}
-          ></lightning-input>
-          <lightning-input
-            type="number"
-            label="실제 설치 수"
-            data-field="actualInstalls"
-            value={draft.actualInstalls}
-            min="0"
-            step="1"
-            message-when-range-underflow="0 이상 입력해 주세요"
-            message-when-step-mismatch="정수로 입력해 주세요"
-            read-only={isDoneStep}
-            onchange={handleInput}
-          ></lightning-input>
-          <lightning-input
-            type="number"
-            label="클릭 수"
-            data-field="clicks"
-            value={draft.clicks}
-            min="0"
-            step="1"
-            message-when-range-underflow="0 이상 입력해 주세요"
-            message-when-step-mismatch="정수로 입력해 주세요"
-            read-only={isDoneStep}
-            onchange={handleInput}
-          ></lightning-input>
-        </section>
-
-        <template lwc:if={isDoneStep}>
-          <div class="done">
-            <lightning-icon
-              icon-name="utility:success"
-              size="small"
-              variant="success"
-            ></lightning-icon>
-            <span><strong>{view.recordName}</strong> 저장을 완료했습니다.</span>
-          </div>
-        </template>
-
-        <footer class="actions">
-          <lightning-button
-            label="다른 캠페인"
-            icon-name="utility:back"
-            onclick={handleReset}
-          ></lightning-button>
-          <template lwc:if={isEditStep}>
-            <lightning-button
-              variant="brand"
-              label="저장"
-              icon-name="utility:save"
-              disabled={isLoading}
-              onclick={handleSave}
-            ></lightning-button>
-          </template>
-          <template lwc:if={isDoneStep}>
-            <lightning-button
-              variant="brand-outline"
-              label="다시 수정"
-              icon-name="utility:edit"
-              onclick={handleEditAgain}
-            ></lightning-button>
-          </template>
-        </footer>
-      </template>
-    </div>
-  </article>
+    </article>
 </template>

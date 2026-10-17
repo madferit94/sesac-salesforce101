@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Urgency__c</fullName>
-    <formula
-  >IF(AND(Open_Item_Count__c &gt; 0, OR(Urgent_Purpose_Open_Count__c &gt; 0, TODAY() - Recon_Date__c &gt;= 3)), IMAGE("/img/samples/flag_red.gif", "긴급", 16, 16) &amp; " 긴급", IF(ISPICKVAL(Status__c, "완료"), IMAGE("/img/samples/flag_green.gif", "완료", 16, 16) &amp; " 완료", IMAGE("/img/samples/flag_yellow.gif", "보통", 16, 16) &amp; " 보통"))</formula>
+    <formula>IF(AND(Open_Item_Count__c &gt; 0, OR(Urgent_Purpose_Open_Count__c &gt; 0, TODAY() - Recon_Date__c &gt;= 3)), IMAGE("/img/samples/flag_red.gif", "긴급", 16, 16) &amp; " 긴급", IF(ISPICKVAL(Status__c, "완료"), IMAGE("/img/samples/flag_green.gif", "완료", 16, 16) &amp; " 완료", IMAGE("/img/samples/flag_yellow.gif", "보통", 16, 16) &amp; " 보통"))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText
-  >긴급: 남은 항목 중 지급 대행 자금이 있거나, 대조일로부터 3일 이상 지났는데 남은 항목이 있음 / 완료 / 보통</inlineHelpText>
+    <inlineHelpText>긴급: 남은 항목 중 지급 대행 자금이 있거나, 대조일로부터 3일 이상 지났는데 남은 항목이 있음 / 완료 / 보통</inlineHelpText>
     <label>긴급도</label>
     <required>false</required>
     <type>Text</type>

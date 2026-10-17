@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <assignments>
@@ -10,8 +10,7 @@
             <assignToReference>$Record.Customer_Tier__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >$Record.Customer_Name__r.Customer_Tier__c</elementReference>
+                <elementReference>$Record.Customer_Name__r.Customer_Tier__c</elementReference>
             </value>
         </assignmentItems>
     </assignments>
@@ -25,8 +24,7 @@
             <name>Has_Tier</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >$Record.Customer_Name__r.Customer_Tier__c</leftValueReference>
+                <leftValueReference>$Record.Customer_Name__r.Customer_Tier__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -38,11 +36,9 @@
             <label>등급 있음</label>
         </rules>
     </decisions>
-    <description
-  >상담 저장 직전에 고객이름(Contact)의 고객 등급을 상담의 고객 등급으로 복사합니다.</description>
+    <description>상담 저장 직전에 고객이름(Contact)의 고객 등급을 상담의 고객 등급으로 복사합니다.</description>
     <environments>Default</environments>
-    <interviewLabel
-  >Luxury Consultation Sync Tier {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Luxury Consultation Sync Tier {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Luxury Consultation Sync Tier</label>
     <processMetadataValues>
         <name>BuilderType</name>

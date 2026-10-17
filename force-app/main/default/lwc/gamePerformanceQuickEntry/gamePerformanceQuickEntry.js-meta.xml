@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>게임 성과 빠른 입력</masterLabel>
-    <description
-  >캠페인을 선택해 게임 마케팅 성과의 목표·실제 설치 수와 클릭 수를 수정하거나, 성과가 없으면 새로 만듭니다.</description>
+    <description>캠페인을 선택해 게임 마케팅 성과의 목표·실제 설치 수와 클릭 수를 수정하거나, 성과가 없으면 새로 만듭니다.</description>
     <targets>
         <target>lightning__HomePage</target>
         <target>lightning__AppPage</target>

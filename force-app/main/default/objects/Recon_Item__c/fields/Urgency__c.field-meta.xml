@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Urgency__c</fullName>
-    <formula
-  >IF(Resolved__c, IMAGE("/img/samples/flag_green.gif", "해결", 16, 16) &amp; " 해결", IF(OR(ISPICKVAL(Deposit_Purpose__c, "지급 대행 자금"), Days_Open__c &gt;= 3), IMAGE("/img/samples/flag_red.gif", "긴급", 16, 16) &amp; " 긴급", IMAGE("/img/samples/flag_yellow.gif", "보통", 16, 16) &amp; " 보통"))</formula>
+    <formula>IF(Resolved__c, IMAGE("/img/samples/flag_green.gif", "해결", 16, 16) &amp; " 해결", IF(OR(ISPICKVAL(Deposit_Purpose__c, "지급 대행 자금"), Days_Open__c &gt;= 3), IMAGE("/img/samples/flag_red.gif", "긴급", 16, 16) &amp; " 긴급", IMAGE("/img/samples/flag_yellow.gif", "보통", 16, 16) &amp; " 보통"))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText
-  >긴급: 미해결이면서 입금 목적이 지급 대행 자금이거나 경과일 3일 이상 / 보통: 그 밖의 미해결 / 해결: 해결 체크됨</inlineHelpText>
+    <inlineHelpText>긴급: 미해결이면서 입금 목적이 지급 대행 자금이거나 경과일 3일 이상 / 보통: 그 밖의 미해결 / 해결: 해결 체크됨</inlineHelpText>
     <label>긴급도</label>
     <required>false</required>
     <type>Text</type>

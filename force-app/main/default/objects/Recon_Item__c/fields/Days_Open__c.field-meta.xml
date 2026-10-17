@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Days_Open__c</fullName>
-    <formula
-  >IF(Resolved__c, NULL, MAX(0, TODAY() - Daily_Recon__r.Recon_Date__c))</formula>
+    <formula>IF(Resolved__c, NULL, MAX(0, TODAY() - Daily_Recon__r.Recon_Date__c))</formula>
     <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
-    <inlineHelpText
-  >해결되지 않은 항목이 대조일로부터 며칠 지났는지 (해결되면 빈값)</inlineHelpText>
+    <inlineHelpText>해결되지 않은 항목이 대조일로부터 며칠 지났는지 (해결되면 빈값)</inlineHelpText>
     <label>경과일</label>
     <precision>18</precision>
     <required>false</required>

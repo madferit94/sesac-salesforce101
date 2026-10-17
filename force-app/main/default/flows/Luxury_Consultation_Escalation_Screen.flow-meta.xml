@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <assignments>
@@ -26,8 +26,7 @@
             <assignToReference>varHandlerId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >Get_Consultation.Manager_Employee__c</elementReference>
+                <elementReference>Get_Consultation.Manager_Employee__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -43,8 +42,7 @@
             <assignToReference>varConsultationId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >Consultation_Table.firstSelectedRow.Id</elementReference>
+                <elementReference>Consultation_Table.firstSelectedRow.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -80,8 +78,7 @@
             <name>Already_Requested</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >Get_Consultation.Escalation_Status__c</leftValueReference>
+                <leftValueReference>Get_Consultation.Escalation_Status__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>미요청</stringValue>
@@ -138,8 +135,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference
-        >Assign_Handler_Advisor_Manager</targetReference>
+                <targetReference>Assign_Handler_Advisor_Manager</targetReference>
             </connector>
             <label>담당 직원의 상위 직원 있음</label>
         </rules>
@@ -147,16 +143,14 @@
             <name>Consultation_Has_Manager</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >Get_Consultation.Manager_Employee__c</leftValueReference>
+                <leftValueReference>Get_Consultation.Manager_Employee__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference
-        >Assign_Handler_Consult_Manager</targetReference>
+                <targetReference>Assign_Handler_Consult_Manager</targetReference>
             </connector>
             <label>상담의 상위 담당 직원 있음</label>
         </rules>
@@ -186,29 +180,24 @@
             <label>있음</label>
         </rules>
     </decisions>
-    <description
-  >럭셔리 고객 상담을 상위 직원에게 에스컬레이션합니다. 새싹 앱 홈에서는 미요청 상담 목록에서 선택하고, 상담 레코드 페이지에서는 현재 상담을 대상으로 합니다. 처리 직원은 담당 직원의 상위 직원, 없으면 상담의 상위 담당 직원입니다.</description>
+    <description>럭셔리 고객 상담을 상위 직원에게 에스컬레이션합니다. 새싹 앱 홈에서는 미요청 상담 목록에서 선택하고, 상담 레코드 페이지에서는 현재 상담을 대상으로 합니다. 처리 직원은 담당 직원의 상위 직원, 없으면 상담의 상위 담당 직원입니다.</description>
     <environments>Default</environments>
     <formulas>
         <name>fxEscalationReason</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!Get_Consultation.Assistance_Reason__c}), &quot;담당 직원 직접 요청&quot;, {!Get_Consultation.Assistance_Reason__c})</expression>
+        <expression>IF(ISBLANK({!Get_Consultation.Assistance_Reason__c}), &quot;담당 직원 직접 요청&quot;, {!Get_Consultation.Assistance_Reason__c})</expression>
     </formulas>
     <formulas>
         <name>fxCustomer</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!varCustomerName}), &quot;(미지정)&quot;, {!varCustomerName})</expression>
+        <expression>IF(ISBLANK({!varCustomerName}), &quot;(미지정)&quot;, {!varCustomerName})</expression>
     </formulas>
     <formulas>
         <name>fxRequester</name>
         <dataType>String</dataType>
-        <expression
-    >TRIM({!$User.LastName} &amp; &quot; &quot; &amp; {!$User.FirstName})</expression>
+        <expression>TRIM({!$User.LastName} &amp; &quot; &quot; &amp; {!$User.FirstName})</expression>
     </formulas>
-    <interviewLabel
-  >Luxury Consultation Escalation Screen {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Luxury Consultation Escalation Screen {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Luxury Consultation Escalation Screen</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -228,8 +217,7 @@
         <label>담당 직원 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >true</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Customer</targetReference>
         </connector>
@@ -257,8 +245,7 @@
         <label>상담 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Already_Requested</targetReference>
         </connector>
@@ -279,8 +266,7 @@
         <label>고객(Contact) 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >true</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Handler</targetReference>
         </connector>
@@ -289,8 +275,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-        >Get_Consultation.Customer_Name__c</elementReference>
+                <elementReference>Get_Consultation.Customer_Name__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -305,8 +290,7 @@
         <label>넘겨받을 직원 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >true</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Screen_Confirm</targetReference>
         </connector>
@@ -330,8 +314,7 @@
         <label>미요청 상담 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Has_Open</targetReference>
         </connector>
@@ -405,8 +388,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Already_Message</name>
-            <fieldText
-      >&lt;p&gt;&lt;strong&gt;{!Get_Consultation.Name}&lt;/strong&gt; 상담은 이미 에스컬레이션 상태가 &lt;strong&gt;{!Get_Consultation.Escalation_Status__c}&lt;/strong&gt;입니다.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;{!Get_Consultation.Name}&lt;/strong&gt; 상담은 이미 에스컬레이션 상태가 &lt;strong&gt;{!Get_Consultation.Escalation_Status__c}&lt;/strong&gt;입니다.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>닫기</nextOrFinishButtonLabel>
@@ -426,8 +408,7 @@
         </connector>
         <fields>
             <name>Confirm_Message</name>
-            <fieldText
-      >&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;strong&gt;{!varHandlerName}로 인계됩니다&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;상담 번호: {!Get_Consultation.Name}&lt;/li&gt;&lt;li&gt;고객: {!fxCustomer} ({!Get_Consultation.Customer_Tier__c})&lt;/li&gt;&lt;li&gt;담당 직원: {!varAdvisorName}&lt;/li&gt;&lt;li&gt;요청 직원: {!fxRequester}&lt;/li&gt;&lt;li&gt;인계받을 직원: {!varHandlerName}&lt;/li&gt;&lt;li&gt;사유: {!fxEscalationReason}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;strong&gt;{!varHandlerName}로 인계됩니다&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;상담 번호: {!Get_Consultation.Name}&lt;/li&gt;&lt;li&gt;고객: {!fxCustomer} ({!Get_Consultation.Customer_Tier__c})&lt;/li&gt;&lt;li&gt;담당 직원: {!varAdvisorName}&lt;/li&gt;&lt;li&gt;요청 직원: {!fxRequester}&lt;/li&gt;&lt;li&gt;인계받을 직원: {!varHandlerName}&lt;/li&gt;&lt;li&gt;사유: {!fxEscalationReason}&lt;/li&gt;&lt;/ul&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>에스컬레이션</nextOrFinishButtonLabel>
@@ -444,8 +425,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Done_Message</name>
-            <fieldText
-      >&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;strong&gt;✅ {!varHandlerName}로 인계되었습니다&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;상담 번호: {!Get_Consultation.Name}&lt;/li&gt;&lt;li&gt;고객: {!fxCustomer} ({!Get_Consultation.Customer_Tier__c})&lt;/li&gt;&lt;li&gt;담당 직원: {!varAdvisorName}&lt;/li&gt;&lt;li&gt;요청 직원: {!fxRequester}&lt;/li&gt;&lt;li&gt;인계받을 직원: {!varHandlerName}&lt;/li&gt;&lt;li&gt;사유: {!fxEscalationReason}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;strong&gt;✅ {!varHandlerName}로 인계되었습니다&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;상담 번호: {!Get_Consultation.Name}&lt;/li&gt;&lt;li&gt;고객: {!fxCustomer} ({!Get_Consultation.Customer_Tier__c})&lt;/li&gt;&lt;li&gt;담당 직원: {!varAdvisorName}&lt;/li&gt;&lt;li&gt;요청 직원: {!fxRequester}&lt;/li&gt;&lt;li&gt;인계받을 직원: {!varHandlerName}&lt;/li&gt;&lt;li&gt;사유: {!fxEscalationReason}&lt;/li&gt;&lt;/ul&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>완료</nextOrFinishButtonLabel>
@@ -462,8 +442,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Error_Message</name>
-            <fieldText
-      >&lt;p&gt;에스컬레이션 중 오류가 발생했습니다.&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;에스컬레이션 중 오류가 발생했습니다.&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>닫기</nextOrFinishButtonLabel>
@@ -480,8 +459,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>No_Handler_Message</name>
-            <fieldText
-      >&lt;p&gt;넘겨받을 상위 직원이 없어 &lt;strong&gt;{!Get_Consultation.Name}&lt;/strong&gt; 상담을 에스컬레이션할 수 없습니다.&lt;/p&gt;&lt;p&gt;담당 직원의 상위 직원 또는 상담의 상위 담당 직원을 지정해 주세요.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;넘겨받을 상위 직원이 없어 &lt;strong&gt;{!Get_Consultation.Name}&lt;/strong&gt; 상담을 에스컬레이션할 수 없습니다.&lt;/p&gt;&lt;p&gt;담당 직원의 상위 직원 또는 상담의 상위 담당 직원을 지정해 주세요.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>닫기</nextOrFinishButtonLabel>
@@ -498,8 +476,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>No_Open_Message</name>
-            <fieldText
-      >&lt;p&gt;에스컬레이션할 미요청 상담이 없습니다.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;에스컬레이션할 미요청 상담이 없습니다.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>닫기</nextOrFinishButtonLabel>
@@ -558,12 +535,10 @@
             <inputParameters>
                 <name>columns</name>
                 <value>
-                    <stringValue
-          >[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-name&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;상담 번호&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;상담 번호&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Customer_Tier__c&quot;,&quot;guid&quot;:&quot;column-tier&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;고객 등급&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;고객 등급&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Preferred_Category__c&quot;,&quot;guid&quot;:&quot;column-category&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;관심 카테고리&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;관심 카테고리&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Consultation_Status__c&quot;,&quot;guid&quot;:&quot;column-status&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;상담 상태&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;상담 상태&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Response_Due_At__c&quot;,&quot;guid&quot;:&quot;column-due&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;첫 응답 기한&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;첫 응답 기한&quot;,&quot;type&quot;:&quot;customDateTime&quot;},{&quot;apiName&quot;:&quot;Assistance_Reason__c&quot;,&quot;guid&quot;:&quot;column-reason&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;도움 요청 사유&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;도움 요청 사유&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                    <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-name&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;상담 번호&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;상담 번호&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Customer_Tier__c&quot;,&quot;guid&quot;:&quot;column-tier&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;고객 등급&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;고객 등급&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Preferred_Category__c&quot;,&quot;guid&quot;:&quot;column-category&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;관심 카테고리&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;관심 카테고리&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Consultation_Status__c&quot;,&quot;guid&quot;:&quot;column-status&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;상담 상태&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;상담 상태&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Response_Due_At__c&quot;,&quot;guid&quot;:&quot;column-due&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;첫 응답 기한&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;첫 응답 기한&quot;,&quot;type&quot;:&quot;customDateTime&quot;},{&quot;apiName&quot;:&quot;Assistance_Reason__c&quot;,&quot;guid&quot;:&quot;column-reason&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;도움 요청 사유&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;도움 요청 사유&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
                 </value>
             </inputParameters>
-            <inputsOnNextNavToAssocScrn
-      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>

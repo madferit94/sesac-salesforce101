@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Require_Resolution_Note</fullName>
     <active>true</active>
     <description>해결 체크할 때 처리 내용 필수</description>
-    <errorConditionFormula
-  >AND(NOT($Permission.Recon_Override), Resolved__c, ISBLANK(Resolution_Note__c))</errorConditionFormula>
-    <errorMessage
-  >해결 체크를 하려면 처리 사유를 입력하세요. (예: 재무팀 시스템 반영 완료)</errorMessage>
+    <errorConditionFormula>AND(NOT($Permission.Recon_Override), Resolved__c, ISBLANK(Resolution_Note__c))</errorConditionFormula>
+    <errorMessage>해결 체크를 하려면 처리 사유를 입력하세요. (예: 재무팀 시스템 반영 완료)</errorMessage>
 </ValidationRule>

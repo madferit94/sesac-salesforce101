@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='UTF-8'?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
@@ -61,8 +61,7 @@
                 <identifier>flowruntime_interview_wizard</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue
-            >{!$Permission.CustomPermission.Recon_Entry}</leftValue>
+                        <leftValue>{!$Permission.CustomPermission.Recon_Entry}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -77,8 +76,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value
-          >&lt;p&gt;&lt;b&gt;상태 보는 법&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;보고 필요&lt;/b&gt;: 차이가 0원이 아니거나 남은 항목이 있음, 보고 내용 자동 작성&lt;/li&gt;&lt;li&gt;&lt;b&gt;진행 중&lt;/b&gt;: 통장 잔액이 아직 입력되지 않음&lt;/li&gt;&lt;li&gt;&lt;b&gt;완료&lt;/b&gt;: 차이 0원, 남은 항목 0건&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;업무 하는 방식 (예: 10/15 패런트)&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;엑셀로 짝을 맞춘 뒤 일일 대조에 잔액 입력: 시스템 100,000,000원, 통장 100,300,000원 → 차이 +300,000원, &lt;b&gt;보고 필요&lt;/b&gt;&lt;/li&gt;&lt;li&gt;안 맞는 금액을 미대조 항목으로 등록: 그린셀 바이오 입금 300,000원, 원인 시스템 미반영, 처리 담당 도윤&lt;/li&gt;&lt;li&gt;자동 작성된 보고 내용 확인 → 보고 대상 &lt;b&gt;재무팀장 태오&lt;/b&gt;에게 보고&lt;/li&gt;&lt;li&gt;도윤이 시스템에 30만 원 반영 후 운영팀에 알림 → 지우가 확인하고 항목 해결 체크, 시스템 잔액을 100,300,000원으로 정정&lt;/li&gt;&lt;li&gt;차이 0원 + 남은 항목 0건 → &lt;b&gt;완료&lt;/b&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;b&gt;계좌&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;체킹 (은행 운영 계좌): 선물 거래, 자체 입출금, 지로&lt;/li&gt;&lt;li&gt;패런트 (기업 고객 모계좌): 기업·타 은행 입출금&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;시연 순서&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;확인이 필요한 대조에서 DR-0005 열기&lt;/li&gt;&lt;li&gt;미대조 항목 RI-0007, RI-0008에 처리 내용 입력 후 해결 체크&lt;/li&gt;&lt;li&gt;시스템 잔액을 2,244,990,000원으로 정정하면 완료&lt;/li&gt;&lt;/ol&gt;</value>
+                    <value>&lt;p&gt;&lt;b&gt;상태 보는 법&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;보고 필요&lt;/b&gt;: 차이가 0원이 아니거나 남은 항목이 있음, 보고 내용 자동 작성&lt;/li&gt;&lt;li&gt;&lt;b&gt;진행 중&lt;/b&gt;: 통장 잔액이 아직 입력되지 않음&lt;/li&gt;&lt;li&gt;&lt;b&gt;완료&lt;/b&gt;: 차이 0원, 남은 항목 0건&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;업무 하는 방식 (예: 10/15 패런트)&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;엑셀로 짝을 맞춘 뒤 일일 대조에 잔액 입력: 시스템 100,000,000원, 통장 100,300,000원 → 차이 +300,000원, &lt;b&gt;보고 필요&lt;/b&gt;&lt;/li&gt;&lt;li&gt;안 맞는 금액을 미대조 항목으로 등록: 그린셀 바이오 입금 300,000원, 원인 시스템 미반영, 처리 담당 도윤&lt;/li&gt;&lt;li&gt;자동 작성된 보고 내용 확인 → 보고 대상 &lt;b&gt;재무팀장 태오&lt;/b&gt;에게 보고&lt;/li&gt;&lt;li&gt;도윤이 시스템에 30만 원 반영 후 운영팀에 알림 → 지우가 확인하고 항목 해결 체크, 시스템 잔액을 100,300,000원으로 정정&lt;/li&gt;&lt;li&gt;차이 0원 + 남은 항목 0건 → &lt;b&gt;완료&lt;/b&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;b&gt;계좌&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;체킹 (은행 운영 계좌): 선물 거래, 자체 입출금, 지로&lt;/li&gt;&lt;li&gt;패런트 (기업 고객 모계좌): 기업·타 은행 입출금&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;시연 순서&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;확인이 필요한 대조에서 DR-0005 열기&lt;/li&gt;&lt;li&gt;미대조 항목 RI-0007, RI-0008에 처리 내용 입력 후 해결 체크&lt;/li&gt;&lt;li&gt;시스템 잔액을 2,244,990,000원으로 정정하면 완료&lt;/li&gt;&lt;/ol&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText_guide</identifier>

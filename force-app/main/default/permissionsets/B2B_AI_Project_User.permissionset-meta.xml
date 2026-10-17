@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description
-  >AI 도입 프로젝트 읽기·생성·편집, 직원 조회, 탭 표시</description>
+    <description>AI 도입 프로젝트 읽기·생성·편집, 직원 조회, 탭 표시</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>B2B_AI_Project__c.AI_Review_Status__c</field>

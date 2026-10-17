@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Group xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description
-  >입출금 대조 기록을 볼 수 있는 부서: 운영팀 (운영팀장 포함)만. 재무·기업금융·IT·HR·TF팀은 제외 (다른 부서는 보고 메일로만 받음)</description>
+    <description>입출금 대조 기록을 볼 수 있는 부서: 운영팀 (운영팀장 포함)만. 재무·기업금융·IT·HR·TF팀은 제외 (다른 부서는 보고 메일로만 받음)</description>
     <doesIncludeBosses>true</doesIncludeBosses>
     <name>입출금 대조 접근 부서</name>
 </Group>

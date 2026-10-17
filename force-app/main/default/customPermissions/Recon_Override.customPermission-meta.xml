@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description
-  >기록 보호 검증 규칙을 넘어서 수정할 수 있는 예외 권한. 평소에는 아무에게도 주지 않고, 꼭 고쳐야 할 때만 관리자가 잠시 부여 (변경 이력에 남음)</description>
+    <description>기록 보호 검증 규칙을 넘어서 수정할 수 있는 예외 권한. 평소에는 아무에게도 주지 않고, 꼭 고쳐야 할 때만 관리자가 잠시 부여 (변경 이력에 남음)</description>
     <isLicensed>false</isLicensed>
     <label>대조 수정 예외</label>
 </CustomPermission>

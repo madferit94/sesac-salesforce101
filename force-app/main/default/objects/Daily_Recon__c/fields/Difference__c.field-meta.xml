@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Difference__c</fullName>
-    <formula
-  >IF(OR(ISBLANK(Bank_Balance__c), ISBLANK(System_Balance__c)), NULL, Bank_Balance__c - System_Balance__c)</formula>
+    <formula>IF(OR(ISBLANK(Bank_Balance__c), ISBLANK(System_Balance__c)), NULL, Bank_Balance__c - System_Balance__c)</formula>
     <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
-    <inlineHelpText
-  >통장 잔액 - 시스템 잔액. 둘 중 하나라도 비어 있으면 빈값입니다.</inlineHelpText>
+    <inlineHelpText>통장 잔액 - 시스템 잔액. 둘 중 하나라도 비어 있으면 빈값입니다.</inlineHelpText>
     <label>차이 (통장 - 시스템)</label>
     <precision>18</precision>
     <required>false</required>

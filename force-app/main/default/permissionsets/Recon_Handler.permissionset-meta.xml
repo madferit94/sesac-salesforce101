@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Bank_Recon</application>
@@ -8,8 +8,7 @@
         <apexClass>ReconDashboardController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description
-  >처리 담당: 일일 대조·미대조 항목 읽기, 미대조 항목의 처리 내용·해결 여부만 수정 (금액·잔액 수정, 생성, 삭제 불가)</description>
+    <description>처리 담당: 일일 대조·미대조 항목 읽기, 미대조 항목의 처리 내용·해결 여부만 수정 (금액·잔액 수정, 생성, 삭제 불가)</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Counterparty_Type__c</field>

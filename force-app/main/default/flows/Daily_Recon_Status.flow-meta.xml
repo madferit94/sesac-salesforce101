@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
@@ -56,8 +56,7 @@
             <assignToReference>varHandlerName</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >varItem.Handler_Employee__r.Name</elementReference>
+                <elementReference>varItem.Handler_Employee__r.Name</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -197,8 +196,7 @@
             <name>Has_Handler</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >varItem.Handler_Employee__c</leftValueReference>
+                <leftValueReference>varItem.Handler_Employee__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -230,8 +228,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference
-        >$Record.System_Balance__c</leftValueReference>
+                <leftValueReference>$Record.System_Balance__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -258,8 +255,7 @@
             <label>완료</label>
         </rules>
     </decisions>
-    <description
-  >일일 대조 저장 시 상태를 판정합니다. 잔액 미입력이면 진행 중, 차이 0원이고 남은 항목 0건이면 완료, 그 밖에는 보고 필요로 바꾸고 보고 내용을 자동 작성합니다.</description>
+    <description>일일 대조 저장 시 상태를 판정합니다. 잔액 미입력이면 진행 중, 차이 0원이고 남은 항목 0건이면 완료, 그 밖에는 보고 필요로 바꾸고 보고 내용을 자동 작성합니다.</description>
     <environments>Default</environments>
     <formulas>
         <name>fxAccountLabel</name>
@@ -269,20 +265,17 @@
     <formulas>
         <name>fxDateLabel</name>
         <dataType>String</dataType>
-        <expression
-    >TEXT(MONTH({!$Record.Recon_Date__c})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Record.Recon_Date__c}))</expression>
+        <expression>TEXT(MONTH({!$Record.Recon_Date__c})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Record.Recon_Date__c}))</expression>
     </formulas>
     <formulas>
         <name>fxDepositor</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!varItem.Depositor_Name__c}), &quot;(입금자명 없음)&quot;, {!varItem.Depositor_Name__c})</expression>
+        <expression>IF(ISBLANK({!varItem.Depositor_Name__c}), &quot;(입금자명 없음)&quot;, {!varItem.Depositor_Name__c})</expression>
     </formulas>
     <formulas>
         <name>fxDiff</name>
         <dataType>Number</dataType>
-        <expression
-    >{!$Record.Bank_Balance__c} - {!$Record.System_Balance__c}</expression>
+        <expression>{!$Record.Bank_Balance__c} - {!$Record.System_Balance__c}</expression>
         <scale>0</scale>
     </formulas>
     <formulas>
@@ -293,14 +286,12 @@
     <formulas>
         <name>fxDiffText</name>
         <dataType>String</dataType>
-        <expression
-    >IF({!fxDiff} &gt; 0, &quot;+&quot;, IF({!fxDiff} &lt; 0, &quot;-&quot;, &quot;&quot;)) &amp; IF(LEN({!fxDiffDigits}) &lt;= 3, {!fxDiffDigits}, IF(LEN({!fxDiffDigits}) &lt;= 6, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3), IF(LEN({!fxDiffDigits}) &lt;= 9, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 6) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3), LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 9) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 8, 3) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3))))</expression>
+        <expression>IF({!fxDiff} &gt; 0, &quot;+&quot;, IF({!fxDiff} &lt; 0, &quot;-&quot;, &quot;&quot;)) &amp; IF(LEN({!fxDiffDigits}) &lt;= 3, {!fxDiffDigits}, IF(LEN({!fxDiffDigits}) &lt;= 6, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3), IF(LEN({!fxDiffDigits}) &lt;= 9, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 6) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3), LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 9) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 8, 3) &amp; &quot;,&quot; &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxDiffDigits}, 3))))</expression>
     </formulas>
     <formulas>
         <name>fxHandlerSuffix</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!varHandlerName}), &quot;&quot;, &quot; (처리 담당: &quot; &amp; {!varHandlerName} &amp; IF(ISBLANK({!varItem.Report_Manager__c}), &quot;&quot;, &quot; → 보고: &quot; &amp; {!varItem.Report_Manager__c}) &amp; &quot;)&quot;)</expression>
+        <expression>IF(ISBLANK({!varHandlerName}), &quot;&quot;, &quot; (처리 담당: &quot; &amp; {!varHandlerName} &amp; IF(ISBLANK({!varItem.Report_Manager__c}), &quot;&quot;, &quot; → 보고: &quot; &amp; {!varItem.Report_Manager__c}) &amp; &quot;)&quot;)</expression>
     </formulas>
     <formulas>
         <name>fxIsDone</name>
@@ -310,8 +301,7 @@
     <formulas>
         <name>fxItemAmount</name>
         <dataType>String</dataType>
-        <expression
-    >IF(LEN({!fxItemDigits}) &lt;= 3, {!fxItemDigits}, IF(LEN({!fxItemDigits}) &lt;= 6, LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3), IF(LEN({!fxItemDigits}) &lt;= 9, LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 6) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3), LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 9) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 8, 3) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3))))</expression>
+        <expression>IF(LEN({!fxItemDigits}) &lt;= 3, {!fxItemDigits}, IF(LEN({!fxItemDigits}) &lt;= 6, LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3), IF(LEN({!fxItemDigits}) &lt;= 9, LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 6) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3), LEFT({!fxItemDigits}, LEN({!fxItemDigits}) - 9) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 8, 3) &amp; &quot;,&quot; &amp; MID({!fxItemDigits}, LEN({!fxItemDigits}) - 5, 3) &amp; &quot;,&quot; &amp; RIGHT({!fxItemDigits}, 3))))</expression>
     </formulas>
     <formulas>
         <name>fxItemDigits</name>
@@ -337,17 +327,14 @@
     <formulas>
         <name>fxReportTo</name>
         <dataType>String</dataType>
-        <expression
-    >BLANKVALUE(TRIM({!$Record.Owner_Employee__r.Manager_Employee__r.Role__c} &amp; &quot; &quot; &amp; {!$Record.Owner_Employee__r.Manager_Employee__r.Name}), &quot;미지정&quot;)</expression>
+        <expression>BLANKVALUE(TRIM({!$Record.Owner_Employee__r.Manager_Employee__r.Role__c} &amp; &quot; &quot; &amp; {!$Record.Owner_Employee__r.Manager_Employee__r.Name}), &quot;미지정&quot;)</expression>
     </formulas>
     <formulas>
         <name>fxReportedAt</name>
         <dataType>DateTime</dataType>
-        <expression
-    >IF(ISBLANK({!$Record.Reported_At__c}), {!$Flow.CurrentDateTime}, {!$Record.Reported_At__c})</expression>
+        <expression>IF(ISBLANK({!$Record.Reported_At__c}), {!$Flow.CurrentDateTime}, {!$Record.Reported_At__c})</expression>
     </formulas>
-    <interviewLabel
-  >일일 대조 상태 판정 {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>일일 대조 상태 판정 {!$Flow.CurrentDateTime}</interviewLabel>
     <label>일일 대조 상태 판정</label>
     <loops>
         <name>Loop_Items</name>
@@ -382,8 +369,7 @@
         <label>남은 항목 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Header</targetReference>
         </connector>

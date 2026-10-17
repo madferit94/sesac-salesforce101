@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Flow
-  xmlns="http://soap.sforce.com/2006/04/metadata"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>67.0</apiVersion>
     <assignments>
         <name>Assign_New</name>
@@ -29,24 +26,21 @@
             <assignToReference>varReconId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >Recon_Table.firstSelectedRow.Id</elementReference>
+                <elementReference>Recon_Table.firstSelectedRow.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varSelSystem</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >Recon_Table.firstSelectedRow.System_Balance__c</elementReference>
+                <elementReference>Recon_Table.firstSelectedRow.System_Balance__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varSelBank</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference
-        >Recon_Table.firstSelectedRow.Bank_Balance__c</elementReference>
+                <elementReference>Recon_Table.firstSelectedRow.Bank_Balance__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -55,8 +49,7 @@
     </assignments>
     <choices>
         <name>chExisting</name>
-        <choiceText
-    >진행 중인 대조 이어서 하기 (항목 추가·잔액 수정)</choiceText>
+        <choiceText>진행 중인 대조 이어서 하기 (항목 추가·잔액 수정)</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>existing</stringValue>
@@ -144,8 +137,7 @@
         <defaultConnector>
             <targetReference>Get_Final</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel
-    >차이 없음 또는 잔액 미입력</defaultConnectorLabel>
+        <defaultConnectorLabel>차이 없음 또는 잔액 미입력</defaultConnectorLabel>
         <rules>
             <name>Has_Diff</name>
             <conditionLogic>and</conditionLogic>
@@ -219,53 +211,52 @@
             <label>이어서 하기</label>
         </rules>
     </decisions>
-    <description
-  >대조 입력 마법사: 새 대조 만들기 또는 진행 중인 대조 선택 → 잔액 → 안 맞는 금액 등록(반복) → 결과. 상태 판정과 보고 내용은 Flow '일일 대조 상태 판정'이 처리합니다.</description>
+    <description>대조 입력 마법사: 새 대조 만들기 또는 진행 중인 대조 선택 → 잔액 → 안 맞는 금액 등록(반복) → 결과. 상태 판정과 보고 내용은 Flow '일일 대조 상태 판정'이 처리합니다.</description>
     <dynamicChoiceSets>
         <name>csAccount</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Recon_Account__c</picklistField>
         <picklistObject>Daily_Recon__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>csCause</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Cause__c</picklistField>
         <picklistObject>Recon_Item__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>csDirection</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Direction__c</picklistField>
         <picklistObject>Recon_Item__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>csPurpose</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Deposit_Purpose__c</picklistField>
         <picklistObject>Recon_Item__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>csSide</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Side__c</picklistField>
         <picklistObject>Recon_Item__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>csTxType</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Transaction_Type__c</picklistField>
         <picklistObject>Recon_Item__c</picklistObject>
     </dynamicChoiceSets>
@@ -278,8 +269,7 @@
     <formulas>
         <name>fxDiffText</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!Get_Daily.Difference__c}), "계산 안 됨 (통장 잔액 미입력)", IF({!Get_Daily.Difference__c} &gt; 0, "+", IF({!Get_Daily.Difference__c} &lt; 0, "-", "")) &amp; IF(LEN({!fxDiffDigits}) &lt;= 3, {!fxDiffDigits}, IF(LEN({!fxDiffDigits}) &lt;= 6, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3), IF(LEN({!fxDiffDigits}) &lt;= 9, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 6) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3), LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 9) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 8, 3) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3)))) &amp; "원")</expression>
+        <expression>IF(ISBLANK({!Get_Daily.Difference__c}), "계산 안 됨 (통장 잔액 미입력)", IF({!Get_Daily.Difference__c} &gt; 0, "+", IF({!Get_Daily.Difference__c} &lt; 0, "-", "")) &amp; IF(LEN({!fxDiffDigits}) &lt;= 3, {!fxDiffDigits}, IF(LEN({!fxDiffDigits}) &lt;= 6, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3), IF(LEN({!fxDiffDigits}) &lt;= 9, LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 6) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3), LEFT({!fxDiffDigits}, LEN({!fxDiffDigits}) - 9) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 8, 3) &amp; "," &amp; MID({!fxDiffDigits}, LEN({!fxDiffDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxDiffDigits}, 3)))) &amp; "원")</expression>
     </formulas>
     <formulas>
         <name>fxFinalDigits</name>
@@ -289,20 +279,17 @@
     <formulas>
         <name>fxFinalDiff</name>
         <dataType>String</dataType>
-        <expression
-    >IF(ISBLANK({!Get_Final.Difference__c}), "계산 안 됨 (통장 잔액 미입력)", IF({!Get_Final.Difference__c} &gt; 0, "+", IF({!Get_Final.Difference__c} &lt; 0, "-", "")) &amp; IF(LEN({!fxFinalDigits}) &lt;= 3, {!fxFinalDigits}, IF(LEN({!fxFinalDigits}) &lt;= 6, LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3), IF(LEN({!fxFinalDigits}) &lt;= 9, LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 6) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3), LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 9) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 8, 3) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3)))) &amp; "원")</expression>
+        <expression>IF(ISBLANK({!Get_Final.Difference__c}), "계산 안 됨 (통장 잔액 미입력)", IF({!Get_Final.Difference__c} &gt; 0, "+", IF({!Get_Final.Difference__c} &lt; 0, "-", "")) &amp; IF(LEN({!fxFinalDigits}) &lt;= 3, {!fxFinalDigits}, IF(LEN({!fxFinalDigits}) &lt;= 6, LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3), IF(LEN({!fxFinalDigits}) &lt;= 9, LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 6) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3), LEFT({!fxFinalDigits}, LEN({!fxFinalDigits}) - 9) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 8, 3) &amp; "," &amp; MID({!fxFinalDigits}, LEN({!fxFinalDigits}) - 5, 3) &amp; "," &amp; RIGHT({!fxFinalDigits}, 3)))) &amp; "원")</expression>
     </formulas>
     <formulas>
         <name>fxRecordLink</name>
         <dataType>String</dataType>
-        <expression
-    >"/lightning/r/Daily_Recon__c/" &amp; {!varReconId} &amp; "/view"</expression>
+        <expression>"/lightning/r/Daily_Recon__c/" &amp; {!varReconId} &amp; "/view"</expression>
     </formulas>
     <formulas>
         <name>fxReportTo</name>
         <dataType>String</dataType>
-        <expression
-    >BLANKVALUE({!Get_Final.Report_Manager__c}, "미지정")</expression>
+        <expression>BLANKVALUE({!Get_Final.Report_Manager__c}, "미지정")</expression>
     </formulas>
     <interviewLabel>대조 입력 마법사 {!$Flow.CurrentDateTime}</interviewLabel>
     <label>대조 입력 마법사</label>
@@ -436,8 +423,7 @@
         <label>대조 다시 읽기</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Has_Diff</targetReference>
         </connector>
@@ -458,8 +444,7 @@
         <label>최종 결과 읽기</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Screen_Result</targetReference>
         </connector>
@@ -480,8 +465,7 @@
         <label>진행 중인 대조 조회</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Any_Open</targetReference>
         </connector>
@@ -542,8 +526,7 @@
         </connector>
         <fields>
             <name>Ask_Intro</name>
-            <fieldText
-      >&lt;p&gt;&lt;b&gt;{!Get_Daily.Name}&lt;/b&gt; · 상태 &lt;b&gt;{!Get_Daily.Status__c}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;차이 &lt;b&gt;{!fxDiffText}&lt;/b&gt; · 남은 항목 {!Get_Daily.Open_Item_Count__c}건&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;{!Get_Daily.Name}&lt;/b&gt; · 상태 &lt;b&gt;{!Get_Daily.Status__c}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;차이 &lt;b&gt;{!fxDiffText}&lt;/b&gt; · 남은 항목 {!Get_Daily.Open_Item_Count__c}건&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -551,8 +534,7 @@
             <choiceReferences>chRegister</choiceReferences>
             <choiceReferences>chResult</choiceReferences>
             <dataType>String</dataType>
-            <defaultSelectedChoiceReference
-      >chRegister</defaultSelectedChoiceReference>
+            <defaultSelectedChoiceReference>chRegister</defaultSelectedChoiceReference>
             <fieldText>안 맞는 금액을 새로 등록할까요?</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
@@ -575,8 +557,7 @@
         </connector>
         <fields>
             <name>Balance_Intro</name>
-            <fieldText
-      >&lt;p&gt;선택한 대조의 잔액을 확인하세요. 바뀐 잔액이 있으면 고쳐 주세요.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;선택한 대조의 잔액을 확인하세요. 바뀐 잔액이 있으면 고쳐 주세요.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -618,8 +599,7 @@
         </connector>
         <fields>
             <name>Intro</name>
-            <fieldText
-      >&lt;p&gt;&lt;b&gt;엑셀로 짝을 맞춘 뒤, 오늘 대조할 계좌의 잔액을 입력하세요.&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;엑셀로 짝을 맞춘 뒤, 오늘 대조할 계좌의 잔액을 입력하세요.&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -684,8 +664,7 @@
                     <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
-            <inputsOnNextNavToAssocScrn
-      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>varOwnerId</assignToReference>
@@ -710,8 +689,7 @@
         </connector>
         <fields>
             <name>Item_Intro</name>
-            <fieldText
-      >&lt;p&gt;&lt;b&gt;{!Get_Daily.Name}&lt;/b&gt;의 차이는 &lt;b&gt;{!fxDiffText}&lt;/b&gt;입니다. 안 맞는 금액을 하나씩 등록하세요.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;{!Get_Daily.Name}&lt;/b&gt;의 차이는 &lt;b&gt;{!fxDiffText}&lt;/b&gt;입니다. 안 맞는 금액을 하나씩 등록하세요.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -870,8 +848,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>No_Open_Msg</name>
-            <fieldText
-      >&lt;p&gt;진행 중인 대조가 없습니다. 모두 완료 상태입니다. 처음 화면에서 "새 대조 만들기"를 선택하세요.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;진행 중인 대조가 없습니다. 모두 완료 상태입니다. 처음 화면에서 "새 대조 만들기"를 선택하세요.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>닫기</nextOrFinishButtonLabel>
@@ -888,8 +865,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Result</name>
-            <fieldText
-      >&lt;p&gt;&lt;b&gt;{!Get_Final.Name} 저장 완료&lt;/b&gt;&lt;/p&gt;&lt;p&gt;상태: &lt;b&gt;{!Get_Final.Status__c}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;차이: {!fxFinalDiff} · 남은 항목: {!Get_Final.Open_Item_Count__c}건&lt;/p&gt;&lt;p&gt;보고 대상: {!fxReportTo}&lt;/p&gt;&lt;p&gt;&lt;a href="{!fxRecordLink}" target="_self"&gt;대조 화면 열기&lt;/a&gt; (자동 작성된 보고 내용 확인)&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;{!Get_Final.Name} 저장 완료&lt;/b&gt;&lt;/p&gt;&lt;p&gt;상태: &lt;b&gt;{!Get_Final.Status__c}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;차이: {!fxFinalDiff} · 남은 항목: {!Get_Final.Open_Item_Count__c}건&lt;/p&gt;&lt;p&gt;보고 대상: {!fxReportTo}&lt;/p&gt;&lt;p&gt;&lt;a href="{!fxRecordLink}" target="_self"&gt;대조 화면 열기&lt;/a&gt; (자동 작성된 보고 내용 확인)&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>완료</nextOrFinishButtonLabel>
@@ -948,12 +924,10 @@
             <inputParameters>
                 <name>columns</name>
                 <value>
-                    <stringValue
-          >[{"apiName": "Name", "guid": "column-0", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "대조 번호", "wrapText": true, "order": 0, "label": "대조 번호", "type": "text"}, {"apiName": "Recon_Date__c", "guid": "column-1", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "대조일", "wrapText": true, "order": 1, "label": "대조일", "type": "date-local"}, {"apiName": "Recon_Account__c", "guid": "column-2", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "계좌", "wrapText": true, "order": 2, "label": "계좌", "type": "text"}, {"apiName": "Difference__c", "guid": "column-3", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "차이", "wrapText": true, "order": 3, "label": "차이", "type": "currency"}, {"apiName": "Open_Item_Count__c", "guid": "column-4", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "남은 항목", "wrapText": true, "order": 4, "label": "남은 항목", "type": "number"}, {"apiName": "Status__c", "guid": "column-5", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "상태", "wrapText": true, "order": 5, "label": "상태", "type": "text"}]</stringValue>
+                    <stringValue>[{"apiName": "Name", "guid": "column-0", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "대조 번호", "wrapText": true, "order": 0, "label": "대조 번호", "type": "text"}, {"apiName": "Recon_Date__c", "guid": "column-1", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "대조일", "wrapText": true, "order": 1, "label": "대조일", "type": "date-local"}, {"apiName": "Recon_Account__c", "guid": "column-2", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "계좌", "wrapText": true, "order": 2, "label": "계좌", "type": "text"}, {"apiName": "Difference__c", "guid": "column-3", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "차이", "wrapText": true, "order": 3, "label": "차이", "type": "currency"}, {"apiName": "Open_Item_Count__c", "guid": "column-4", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "남은 항목", "wrapText": true, "order": 4, "label": "남은 항목", "type": "number"}, {"apiName": "Status__c", "guid": "column-5", "editable": false, "hasCustomHeaderLabel": true, "customHeaderLabel": "상태", "wrapText": true, "order": 5, "label": "상태", "type": "text"}]</stringValue>
                 </value>
             </inputParameters>
-            <inputsOnNextNavToAssocScrn
-      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
@@ -974,8 +948,7 @@
         </connector>
         <fields>
             <name>Start_Intro</name>
-            <fieldText
-      >&lt;p&gt;&lt;b&gt;입출금 대조 마법사&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;입출금 대조 마법사&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -983,8 +956,7 @@
             <choiceReferences>chNew</choiceReferences>
             <choiceReferences>chExisting</choiceReferences>
             <dataType>String</dataType>
-            <defaultSelectedChoiceReference
-      >chNew</defaultSelectedChoiceReference>
+            <defaultSelectedChoiceReference>chNew</defaultSelectedChoiceReference>
             <fieldText>무엇을 할까요?</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>

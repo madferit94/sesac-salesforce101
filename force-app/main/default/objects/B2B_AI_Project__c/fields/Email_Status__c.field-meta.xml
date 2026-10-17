@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Email_Status__c</fullName>
     <label>이메일 상태</label>
     <required>false</required>
     <type>Picklist</type>
-    <valueSet><restricted>true</restricted><valueSetDefinition><sorted
-      >false</sorted><value><fullName>미발송</fullName><default
-        >true</default><label>미발송</label></value><value><fullName
-        >테스트 발송 완료</fullName><default>false</default><label
-        >테스트 발송 완료</label></value></valueSetDefinition></valueSet>
+    <valueSet><restricted>true</restricted><valueSetDefinition><sorted>false</sorted><value><fullName>미발송</fullName><default>true</default><label>미발송</label></value><value><fullName>테스트 발송 완료</fullName><default>false</default><label>테스트 발송 완료</label></value></valueSetDefinition></valueSet>
 </CustomField>

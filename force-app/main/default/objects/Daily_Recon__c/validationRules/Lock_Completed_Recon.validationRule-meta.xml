@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Lock_Completed_Recon</fullName>
     <active>true</active>
-    <description
-  >완료된 대조는 대조일·계좌·잔액을 고칠 수 없음 (감사 증거 보호)</description>
-    <errorConditionFormula
-  >AND(NOT($Permission.Recon_Override), NOT(ISNEW()), ISPICKVAL(PRIORVALUE(Status__c), "완료"), OR(ISCHANGED(Recon_Date__c), ISCHANGED(Recon_Account__c), ISCHANGED(System_Balance__c), ISCHANGED(Bank_Balance__c)))</errorConditionFormula>
-    <errorMessage
-  >완료된 대조는 대조일, 계좌, 잔액을 고칠 수 없습니다. 꼭 고쳐야 하면 관리자에게 요청하세요.</errorMessage>
+    <description>완료된 대조는 대조일·계좌·잔액을 고칠 수 없음 (감사 증거 보호)</description>
+    <errorConditionFormula>AND(NOT($Permission.Recon_Override), NOT(ISNEW()), ISPICKVAL(PRIORVALUE(Status__c), "완료"), OR(ISCHANGED(Recon_Date__c), ISCHANGED(Recon_Account__c), ISCHANGED(System_Balance__c), ISCHANGED(Bank_Balance__c)))</errorConditionFormula>
+    <errorMessage>완료된 대조는 대조일, 계좌, 잔액을 고칠 수 없습니다. 꼭 고쳐야 하면 관리자에게 요청하세요.</errorMessage>
 </ValidationRule>

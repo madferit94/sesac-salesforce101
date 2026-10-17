@@ -1,162 +1,135 @@
 <template>
-  <article class="slds-card shell">
-    <header class="hero">
-      <div>
-        <h2 class="hero__title">입출금 대조 현황</h2>
-        <p class="hero__subtitle">
-          차이가 0원이 될 때까지, 남은 항목과 처리 담당을 한눈에 봅니다
-        </p>
-      </div>
-      <lightning-button-icon
-        icon-name="utility:refresh"
-        variant="bare-inverse"
-        alternative-text="새로고침"
-        title="새로고침"
-        onclick={handleRefresh}
-      ></lightning-button-icon>
-    </header>
-
-    <div class="body">
-      <template lwc:if={error}>
-        <div class="alert" role="alert">{error}</div>
-      </template>
-
-      <template lwc:if={summary}>
-        <section class="kpis">
-          <div class="kpi kpi_urgent">
-            <span class="kpi__label">긴급 항목</span>
-            <span class="kpi__value"
-              >{summary.urgentItems}<span class="kpi__unit">건</span></span
-            >
-            <span class="kpi__hint">지급 대행 자금 또는 3일 이상 미해결</span>
-          </div>
-          <div class="kpi kpi_warn">
-            <span class="kpi__label">보고 필요</span>
-            <span class="kpi__value"
-              >{summary.needsReport}<span class="kpi__unit">건</span></span
-            >
-            <span class="kpi__hint">통합 메일 보고 대상</span>
-          </div>
-          <div class="kpi kpi_quiet">
-            <span class="kpi__label">진행 중</span>
-            <span class="kpi__value"
-              >{summary.inProgress}<span class="kpi__unit">건</span></span
-            >
-            <span class="kpi__hint">잔액 입력 대기</span>
-          </div>
-          <div class="kpi kpi_good">
-            <span class="kpi__label">완료</span>
-            <span class="kpi__value"
-              >{summary.done}<span class="kpi__unit">건</span></span
-            >
-            <span class="kpi__hint">차이 0원, 남은 항목 0건</span>
-          </div>
-          <div class="kpi kpi_info">
-            <span class="kpi__label">미해결 항목</span>
-            <span class="kpi__value"
-              >{summary.openItems}<span class="kpi__unit">건</span></span
-            >
-            <span class="kpi__hint">가장 오래된 항목: {oldestLabel}</span>
-          </div>
-        </section>
-
-        <section class="panels">
-          <div class="panel">
-            <div class="panel__head">
-              <h3 class="panel__title">원인별 미해결 항목</h3>
-              <lightning-button
-                variant="base"
-                label="항목 보기"
-                onclick={openOpenItems}
-              ></lightning-button>
+    <article class="slds-card shell">
+        <header class="hero">
+            <div>
+                <h2 class="hero__title">입출금 대조 현황</h2>
+                <p class="hero__subtitle">차이가 0원이 될 때까지, 남은 항목과 처리 담당을 한눈에 봅니다</p>
             </div>
-            <template lwc:if={hasOpenItems}>
-              <template for:each={causeBars} for:item="bar">
-                <div key={bar.label} class="bar">
-                  <span class="bar__label">{bar.label}</span>
-                  <span class="bar__track"
-                    ><span class="bar__fill" style={bar.style}></span
-                  ></span>
-                  <span class="bar__value">{bar.value}건</span>
-                </div>
-              </template>
-            </template>
-            <template lwc:else>
-              <p class="empty">미해결 항목이 없습니다.</p>
-            </template>
-          </div>
-          <div class="panel">
-            <div class="panel__head">
-              <h3 class="panel__title">처리 담당별 미해결 항목</h3>
-            </div>
-            <template lwc:if={hasOpenItems}>
-              <template for:each={handlerBars} for:item="bar">
-                <div key={bar.label} class="bar">
-                  <span class="bar__label">{bar.label}</span>
-                  <span class="bar__track"
-                    ><span
-                      class="bar__fill bar__fill_handler"
-                      style={bar.style}
-                    ></span
-                  ></span>
-                  <span class="bar__value">{bar.value}건</span>
-                </div>
-              </template>
-            </template>
-            <template lwc:else>
-              <p class="empty">미해결 항목이 없습니다.</p>
-            </template>
-          </div>
-        </section>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                variant="bare-inverse"
+                alternative-text="새로고침"
+                title="새로고침"
+                onclick={handleRefresh}
+            ></lightning-button-icon>
+        </header>
 
-        <section class="panel">
-          <div class="panel__head">
-            <h3 class="panel__title">확인이 필요한 대조</h3>
-            <lightning-button
-              variant="base"
-              label="전체 보기"
-              onclick={openNeedsReport}
-            ></lightning-button>
-          </div>
-          <template lwc:if={hasRows}>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>대조 번호</th>
-                  <th>대조일</th>
-                  <th>계좌</th>
-                  <th class="num">차이 (통장 - 시스템)</th>
-                  <th class="num">남은 항목</th>
-                </tr>
-              </thead>
-              <tbody>
-                <template for:each={rows} for:item="row">
-                  <tr key={row.id}>
-                    <td>
-                      <lightning-button
-                        variant="base"
-                        label={row.name}
-                        data-id={row.id}
-                        onclick={openRecord}
-                      ></lightning-button>
-                      <template lwc:if={row.urgent}>
-                        <span class="badge_urgent">긴급</span>
-                      </template>
-                    </td>
-                    <td>{row.dateLabel}</td>
-                    <td>{row.account}</td>
-                    <td class="num strong">{row.differenceLabel}</td>
-                    <td class="num">{row.openLabel}</td>
-                  </tr>
-                </template>
-              </tbody>
-            </table>
-          </template>
-          <template lwc:else>
-            <p class="empty">확인이 필요한 대조가 없습니다. 모두 0원입니다.</p>
-          </template>
-        </section>
-      </template>
-    </div>
-  </article>
+        <div class="body">
+            <template lwc:if={error}>
+                <div class="alert" role="alert">{error}</div>
+            </template>
+
+            <template lwc:if={summary}>
+                <section class="kpis">
+                    <div class="kpi kpi_urgent">
+                        <span class="kpi__label">긴급 항목</span>
+                        <span class="kpi__value">{summary.urgentItems}<span class="kpi__unit">건</span></span>
+                        <span class="kpi__hint">지급 대행 자금 또는 3일 이상 미해결</span>
+                    </div>
+                    <div class="kpi kpi_warn">
+                        <span class="kpi__label">보고 필요</span>
+                        <span class="kpi__value">{summary.needsReport}<span class="kpi__unit">건</span></span>
+                        <span class="kpi__hint">통합 메일 보고 대상</span>
+                    </div>
+                    <div class="kpi kpi_quiet">
+                        <span class="kpi__label">진행 중</span>
+                        <span class="kpi__value">{summary.inProgress}<span class="kpi__unit">건</span></span>
+                        <span class="kpi__hint">잔액 입력 대기</span>
+                    </div>
+                    <div class="kpi kpi_good">
+                        <span class="kpi__label">완료</span>
+                        <span class="kpi__value">{summary.done}<span class="kpi__unit">건</span></span>
+                        <span class="kpi__hint">차이 0원, 남은 항목 0건</span>
+                    </div>
+                    <div class="kpi kpi_info">
+                        <span class="kpi__label">미해결 항목</span>
+                        <span class="kpi__value">{summary.openItems}<span class="kpi__unit">건</span></span>
+                        <span class="kpi__hint">가장 오래된 항목: {oldestLabel}</span>
+                    </div>
+                </section>
+
+                <section class="panels">
+                    <div class="panel">
+                        <div class="panel__head">
+                            <h3 class="panel__title">원인별 미해결 항목</h3>
+                            <lightning-button variant="base" label="항목 보기" onclick={openOpenItems}></lightning-button>
+                        </div>
+                        <template lwc:if={hasOpenItems}>
+                            <template for:each={causeBars} for:item="bar">
+                                <div key={bar.label} class="bar">
+                                    <span class="bar__label">{bar.label}</span>
+                                    <span class="bar__track"><span class="bar__fill" style={bar.style}></span></span>
+                                    <span class="bar__value">{bar.value}건</span>
+                                </div>
+                            </template>
+                        </template>
+                        <template lwc:else>
+                            <p class="empty">미해결 항목이 없습니다.</p>
+                        </template>
+                    </div>
+                    <div class="panel">
+                        <div class="panel__head">
+                            <h3 class="panel__title">처리 담당별 미해결 항목</h3>
+                        </div>
+                        <template lwc:if={hasOpenItems}>
+                            <template for:each={handlerBars} for:item="bar">
+                                <div key={bar.label} class="bar">
+                                    <span class="bar__label">{bar.label}</span>
+                                    <span class="bar__track"><span class="bar__fill bar__fill_handler" style={bar.style}></span></span>
+                                    <span class="bar__value">{bar.value}건</span>
+                                </div>
+                            </template>
+                        </template>
+                        <template lwc:else>
+                            <p class="empty">미해결 항목이 없습니다.</p>
+                        </template>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel__head">
+                        <h3 class="panel__title">확인이 필요한 대조</h3>
+                        <lightning-button variant="base" label="전체 보기" onclick={openNeedsReport}></lightning-button>
+                    </div>
+                    <template lwc:if={hasRows}>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>대조 번호</th>
+                                    <th>대조일</th>
+                                    <th>계좌</th>
+                                    <th class="num">차이 (통장 - 시스템)</th>
+                                    <th class="num">남은 항목</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={rows} for:item="row">
+                                    <tr key={row.id}>
+                                        <td>
+                                            <lightning-button
+                                                variant="base"
+                                                label={row.name}
+                                                data-id={row.id}
+                                                onclick={openRecord}
+                                            ></lightning-button>
+                                            <template lwc:if={row.urgent}>
+                                                <span class="badge_urgent">긴급</span>
+                                            </template>
+                                        </td>
+                                        <td>{row.dateLabel}</td>
+                                        <td>{row.account}</td>
+                                        <td class="num strong">{row.differenceLabel}</td>
+                                        <td class="num">{row.openLabel}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template lwc:else>
+                        <p class="empty">확인이 필요한 대조가 없습니다. 모두 0원입니다.</p>
+                    </template>
+                </section>
+            </template>
+        </div>
+    </article>
 </template>

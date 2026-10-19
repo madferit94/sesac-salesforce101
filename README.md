@@ -5,7 +5,7 @@
 > A Salesforce app for a task every bank operations team does daily: **checking that the books match the real bank account.**
 > I designed it from two years of doing this work by hand in a foreign bank's operations team.
 
-This is my Day3 mini project for the Salesforce101 course (SeSAC Salesforce S.T.A.Track, cohort 3). The same repository also holds the Day1–2 exercises. All companies, people and amounts in the app are fictional.
+This is my Day3 mini project for the Salesforce101 course of the Korea Chamber of Commerce and Industry's [Salesforce] AI & Data Specialist Program (S.T.A.Track, cohort 3). The same repository also holds the Day1–2 exercises. All companies, people and amounts in the app are fictional.
 
 ## The problem
 
